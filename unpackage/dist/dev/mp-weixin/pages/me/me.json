@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "to-play": "/mycomponents/ToPlay/ToPlay"
+  }
+}
