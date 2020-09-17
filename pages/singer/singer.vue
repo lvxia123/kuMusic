@@ -2,18 +2,19 @@
 <template>
 	<view class="">
 		<view class="inv-h-w">
-		    <view :class="['inv-h',Inv==0?'inv-h-se':'']" @click="Inv=0">新歌</view>
-		    <!-- <view :class="['inv-h',Inv==1?'inv-h-se':'']" @click="Inv=1" @tap="gotoLunBo" >排行</view> -->
-			<view :class="['inv-h',Inv==1?'inv-h-se':'']" @click="Inv=1">排行</view>
+		    <!-- <view :class="['inv-h',Inv==0?'inv-h-se':'']" @click="Inv=0"  @tap="gotoNewSongs">新歌</view> -->
+			<view :class="['inv-h',Inv==0?'inv-h-se':'']" @click="Inv=0">新歌</view>
+		    <view :class="['inv-h',Inv==1?'inv-h-se':'']" @click="Inv=1" @tap="gotoRank" >排行</view>
+			<!-- <view :class="['inv-h',Inv==1?'inv-h-se':'']" @click="Inv=1">排行</view> -->
 			<view :class="['inv-h',Inv==2?'inv-h-se':'']" @click="Inv=2">歌单</view>
 			<view :class="['inv-h',Inv==3?'inv-h-se':'']" @click="Inv=3">歌手</view>
 		</view>
 		<view class="" v-show="Inv == 0">新歌页面</view>
-		<view class="" v-show="Inv == 1">
+		<!-- <view class="" v-show="Inv == 1">
 			<navigator url="/pages/Ranking/Ranking">
 				排行页面
 			</navigator>
-		</view>
+		</view> -->
 		<view class="" v-show="Inv == 2">歌单页面</view>
 		<view class="" v-show="Inv == 3">
 			<view class="singer-list">
@@ -61,12 +62,18 @@
 			changeTab(Inv){
 			    that.navIdx = Inv;                              
 			},
-			// gotoLunBo(){
-			//     uni.navigateTo({
-			//         url:"/pages/Ranking/Ranking"
+			gotoRank(){
+			    uni.navigateTo({
+			        url:"/pages/Ranking/Ranking"
 			
-			//     })
-			// }
+			    })
+			},
+			// gotoNewSongs(){
+			// 	uni.navigateTo({
+			// 	    url:"/pages/devide/devide"
+							
+			// 	})
+			// },
 
 		},
 		onLoad(){
