@@ -25,6 +25,7 @@
 				"backgroundTextStyle": "dark",
 				"app-plus": {
 					"scrollIndicator": "none", //app端隐藏滚动条
+<<<<<<< HEAD
 					"bounce": "none"
 					// "titleNView": {
 					// 	"buttons": [{
@@ -37,6 +38,20 @@
 					// 		//按钮类型(菜单按钮)
 					// 	}]
 					// }
+=======
+					"bounce": "none",
+					"titleNView": {
+						"buttons": [{
+							"type": "back",
+							// "text":"< 返回",
+							"fontWeight": "normal",
+							// "fontSrc":"./static/back.png",
+							"float": "left",
+							"fontSize": "40rpx"
+							//按钮类型(菜单按钮)
+						}]
+					}
+>>>>>>> master
 				}
 			}
 		},
@@ -49,6 +64,7 @@
 				"backgroundTextStyle": "dark",
 				"app-plus": {
 					"scrollIndicator": "none", //app端隐藏滚动条
+<<<<<<< HEAD
 					"bounce": "none"
 					// "titleNView": {
 					// 	"buttons": [{
@@ -61,6 +77,20 @@
 					// 		//按钮类型(菜单按钮)
 					// 	}]
 					// }
+=======
+					"bounce": "none",
+					"titleNView": {
+						"buttons": [{
+							"type": "back",
+							// "text":"< 返回",
+							"fontWeight": "normal",
+							// "fontSrc":"./static/back.png",
+							"float": "left",
+							"fontSize": "40rpx"
+							//按钮类型(菜单按钮)
+						}]
+					}
+>>>>>>> master
 				}
 			}
 		},
@@ -87,12 +117,20 @@
 			"scrollIndicator": "none",
 			"bounce": "none",
 			"titleNView": {
+<<<<<<< HEAD
 				"autoBackButton": true
 				// "buttons": [{
 				// 	"type": "back",
 				// 	"text": "返回",
 				// 	"float": "left"
 				// }]
+=======
+				"buttons": [{
+					"type": "back",
+					"text": "返回",
+					"float": "left"
+				}]
+>>>>>>> master
 			}
 		}
 	},
