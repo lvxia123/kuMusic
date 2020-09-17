@@ -1,9 +1,10 @@
+<!-- 歌手页第三页 -->
 <template>
 	<view>
 		<view class="singer" v-for="(item,index) in songslist" :key="index">
 			<navigator :url="'/pages/bofang/bofang?id='+ item.album_id">
 				<view class="">
-					{{(item.filename).slice(5)}}
+					{{(item.filename).slice(6)}}
 				</view>
 				<view class="">
 					{{(item.filename).slice(0,4)}}

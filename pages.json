@@ -1,6 +1,21 @@
 {
 	"pages": [
-		// {"path": "pages/singer/singer"},
+		{
+		    "path" : "pages/singer/singer",
+		    "style" : {}
+		},
+		{
+		    "path" : "pages/bofang/bofang",
+		    "style" : {}
+		},
+		{
+		    "path" : "pages/singer-songs/singer-songs",
+		    "style" : {}
+		},
+		{
+		    "path" : "pages/songs-list/songs-list",
+		    "style" : {}
+		},
 		{
 			"path": "pages/Ranking/Ranking",
 			"style": {
