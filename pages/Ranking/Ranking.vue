@@ -1,77 +1,109 @@
 <template>
 	<!-- 外面的view -->
-   <view>
-		 <view  v-for="i in recommend">
-			 <navigator class="list" url="/pages/Songs/Songs?id={i.rankid}" open-type="navigate">
-				 <!-- 左边的音乐列表 -->
-				 	<view class="listpictrue"><image  :src="i.album_img_9" mode=""></image></view>
-				 	<!-- 右边的音乐列表 -->
-				 	<view class="listtitle ">{{i.rankname}}</view>
-				 	<view class="goto"><image src="../../static/right.png" mode=""></image></view>
-			</navigator>
-			 </view>
-		 </view>
-	 </view>
+	<view>
+		<view v-for="(i,k) in recommend" :key="k">
+			<view class="list" @click="turto(i.rankid)">
+				<!-- 左边的音乐列表 -->
+				<view class="listpictrue">
+					<image :src="i.banner_9" mode=""></image>
+				</view>
+				<!-- 右边的音乐列表 -->
+				<view class="listtitle ">{{i.rankname}}</view>
+				<view class="goto">
+					<image src="../../static/right.png" mode=""></image>
+				</view>
+			</view>
+		</view>
+	</view>
+	</view>
 </template>
 
 <script>
-  export default {
+	export default {
 
-    data() {
-      return {
-       // 声明变量保存推荐数组
-			 recommend:[]
-      }
-    },
-    onLoad() {
-			
-    },
-    methods: {
+		data() {
+			return {
+				// 声明变量保存推荐数组
+				recommend: []
+			}
+		},
+		onLoad() {
 			// 请求排行数据
-			getRanking(){
+		
 				uni.request({
-					url:"http://m.kugou.com/rank/list&json=true",
-					success:(res)=>{
-						console.log(res);
-						this.recommend=res.data.rank.list;
-						console.log(res.data.rank.list)
+					url: "http://m.kugou.com/rank/list&json=true",
+					success: (res) => {
+						let list=[]
+						let images = res.data.rank.list;
+						// console.log(datas)
+						for (let i of images) {
+							// console.log(i.banner_9)
+							let image = this.sublist(i.banner_9)
+							// console.log(typeof(image))
+							// console.log(image)
+							list.push(image)
+						}
+						console.log(list)
+						this.recommend = res.data.rank.list;
+						console.log(this.recommend)
+						for(let i=0;i<this.recommend.length;i++){
+							this.recommend[i].banner_9=list[i]
+							console.log(this.recommend[i].banner_9)
+						}
+
 					}
 				})
-			}
-    },
+		},
+		methods: {
+			turto(index) {
+				console.log(index)
+				uni.navigateTo({
+					url: `../Songs/Songs?rankid=${index}`
+				})
+			},
+			// 切割图片字符串
+			sublist(string) {
+				let stringLeft = string.substring(0, string.indexOf("{"));
+				let stringRight = string.substring(string.indexOf("}") + 2);
+				return stringLeft + stringRight
+			},
+		},
 		created() {
-			this.getRanking()
+	
 		}
-  }
+	}
 </script>
 
 <style>
-	.list{
+	.list {
 		height: 200rpx;
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-around;
 		flex-direction: row;
 		border-bottom: 1px solid #DDDDDD;
-		margin: 0 20rpx;
+		margin-right: 20rpx;
+		padding: 20rpx 15rpx;
 	}
-	.listpictrue{
-	flex: 1;
-	width: 150rpx;
-	margin-right: 20rpx;
-	/* height: 380rpx; */
+
+	.listpictrue {
+		flex: 1;
 	}
-	.listpictrue>image{
-		width:100%;
+
+	.listpictrue>image {
+		width: 100%;
 		height: 100%;
 	}
-	.listtitle{
+
+	.listtitle {
 		flex: 2;
 		font-size: 30rpx;
 		color: #333;
 		align-self: center;
+		padding-left: 30rpx;
 	}
-	.goto{
+
+	.goto {
 		flex: 1;
 		width: 60rpx;
 		height: 100rpx;
@@ -79,8 +111,9 @@
 		text-align: end;
 		margin-top: 55rpx;
 	}
-	.goto>image{
+
+	.goto>image {
 		width: 25%;
-		height: 30%; 
+		height: 30%;
 	}
 </style>
