@@ -5,105 +5,104 @@
 				<image v-if="play" src="../../static/icon/play.png"></image>
 				<image v-else src="../../static/icon/shop.png"></image>
 			</view>
-			<view @click="getsong">
+			<view class="song" @click="getsong">
 				<!-- {{song}} -->
-				<text>歌名</text>/
-				<text>歌手</text>
+				<text>{{title}}</text>/
+				<text>{{songer}}</text>
 			</view>
-			<text>❤</text>
+			<view @click="collect">
+				<image v-if="coll" src="../../static/image/heart-active.png"></image>
+				<image v-else src="../../static/image/heart.png"></image>
+			</view>
 		</view>
 	</view>
 </template>
 
 <script>
 	export default {
+		// props: [ "songid" ],
 		data() {
 			return {
 				play: false,
 				song: '',
-				playing: false
+				songer: '',
+				title: '',
+				playing: false,
+				coll: false
 			}
 		},
-		onLoad() {
-	//实例化 音频对象
-			if(this.store.state.audioEle === '') {
-				//就实例化音乐
-				this.store.commit('setAudioEle',uni.createInnerAudioContext());
-					let {audioEle} = this.store.state;
+		mounted() {
+			getsong: {
+				uni.request({ 
+					url: 'http://tingapi.ting.baidu.com/v1/restserver/ting?format=json&calback=&from=webapp_music&method=baidu.ting.song.play&songid=609012146'
+				}).then(res => {
+					console.log(res)
+					this.song = res[1].data.bitrate.file_link;
+					this.songer = res[1].data.songinfo.author;
+					this.title = res[1].data.songinfo.title;
+					if (this.store.state.audioEle === '') {
+						//就实例化音乐
+						this.store.commit('setAudioEle', uni.createInnerAudioContext());
+						let {
+							audioEle
+						} = this.store.state;
 						if (!this.store.state.musicOn) { //如果当前没有音乐在播放的时候
 							audioEle.autoplay = true;
-							// console.log(this.song)
+							console.log(this.song)
 							audioEle.src = this.song;
-							audioEle.loop = true;
-							//监听音乐进入播放的状态获取时长
-							audioEle.onCanplay(() => {
-								//获取当前音乐的总时长
-								this.store.commit('setSongLen',audioEle.duration)
+							// audioEle.loop = true;
+							// 当音乐播放的时候
+							audioEle.onPlay(() => {
+								this.store.commit('setMusicOn', true);
+							});
+							// 当音乐暂停的时候
+							audioEle.onPause(() => {
+								this.store.commit('setMusicOn', false)
 							})
-							audioEle.onTimeUpdate(() => {
-								//获取当前的播放时间，存到vuex中
-								// this.currentTime = audioEle.currentTime;
-								this.store.commit('setCurrentTime',audioEle.currentTime)
-								});
-								// 当音乐播放的时候
-								audioEle.onPlay(() => {
-									this.store.commit('setMusicOn', true);
-								});
-										// 当音乐暂停的时候
-								audioEle.onPause(() => {
-									this.store.commit('setMusicOn', false)
-								})
-							}
-				        }
-			
-						
-			//实例化 音频对象
-			// const audioEle = uni.createInnerAudioContext();
-			// audioEle.autoplay = true;
-			// audioEle.src = 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.mp3';
-			// audioEle.onPlay(() => {
-			//   console.log('开始播放');
-			// });
-			// audioEle.onError((res) => {
-			//   console.log(res.errMsg);
-			//   console.log(res.errCode);
-			// });
+						}
+					}
+				})
+			}
 		},
 		methods: {
 			playmusic() {
-			
+				let {
+					audioEle
+				} = this.store.state;
+				console.log(audioEle)
 				if (this.play == false) {
+					this.play = true
 					audioEle.pause();
-					
 				} else {
 					this.play = false;
 					audioEle.play();
 				}
 			},
-			async getsong() {
-				let res = await this.$myReq({
-					// methods: 'GET',
-					url: "v1/restserver/ting?format=json&calback=&from=webapp_music&method=baidu.ting.song.play&songid=73896409",
-				})
-				console.log(res)
-				this.song = res.data.bitrate.file_link;
-				console.log(this.song)
+			collect(){
+				if(this.coll){
+					this.coll = false
+				}else{
+					this.coll = true
+				}
 			},
-			
-			// ,getsong(){
-			// 	uni.request({
-			// 	    url: 'http://tingapi.ting.baidu.com/v1/restserver/ting?format=json&calback=&from=webapp_music&method=baidu.ting.song.play&songid=73896409', 
-			// 	    success: (res) => {
-			// 	        console.log(res);
-			// 	        // this.text = res.data.list;
-			// 	    }
-			// 	});
-			// }
+			// async getsong() {
+			// 	let res = await this.$myReq({
+			// 		// methods: 'GET',
+			// 		url: "yy/index.php?r=play/getdata&hash=CB7EE97F4CC11C4EA7A1FA4B516A5D97",
+			// 	})
+			// 	console.log(res)
+			// 	// this.song = res.data.play_url;
+			// 	// console.log(this.song)
+			// },
+			onShow() {
+				console.log(this.currentTime);
+				//页面每次渲染完成
+				// 取出状态管理器的audio实例
+				let {
+					audioEle
+				} = this.store.state
+			}
 		},
-		created(){
-			this.getsong()
-		}
-		
 	}
 </script>
 
@@ -129,11 +128,19 @@
 		line-height: 12px;
 		background: #E5E5E5;
 		border-radius: 20px;
-		margin: 30px;
+		margin-top: 30px;
+		margin-bottom: 30px;
+		color: #666666;
 	}
 
-	.bar>view>image {
+	.bar image {
 		width: 22px;
 		height: 22px;
+	}
+	.song{
+		text-align: center;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
 	}
 </style>

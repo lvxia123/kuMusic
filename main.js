@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import App from './App'
+import store from './store/index.js'
 // import FlexLayout from './components/phj-flex/'
 
 // Vue.use(FlexLayout)
@@ -8,6 +9,7 @@ Vue.config.productionTip = false
 import {myRequest} from './request/requst.js'
 Vue.prototype.$myReq = myRequest;
 
+Vue.prototype.store=store
 App.mpType = 'app'
 
 const app = new Vue({

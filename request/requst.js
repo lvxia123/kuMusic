@@ -1,5 +1,6 @@
 //设置默认端口号
-const baseUrl ='http://tingapi.ting.baidu.com/';
+// const baseUrl ='http://tingapi.ting.baidu.com/';
+const baseUrl = 'http://mobilecdn.kugou.com/';
 //封装一个请求的函数
 export const myRequest=(options)=>{
 	// options.method = options.method.toLowerCase()

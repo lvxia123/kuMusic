@@ -69,7 +69,7 @@
 
 				let url = '../index/index?singername' + item
 				uni.navigateTo({
-					url: "/pages/bofang/bofang"
+					url: "/pages/music/music"
 				})
 			},
 			//思彤新增以下4个点击事件：实现点击选项卡跳转至相应页面

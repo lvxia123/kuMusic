@@ -18,10 +18,12 @@
 			<text>+</text>
 		</view>
 		<view  class="songlist">
-			<view class="red">❤</view>
+			<view class="red">
+				<image src="../../static/image/heart.png" mode=""></image>
+			</view>
 			<view>
 				<text>我的红心歌单</text> <br />
-				<text>0首</text>
+				<text>1首</text>
 			</view>
 		</view>
 		<ToPlay></ToPlay>
@@ -104,6 +106,10 @@ export default {
 		background: #E5E5E5;
 		line-height: 80px;
 		text-align: center;
+	}
+	.red image{
+		width: 22px;
+		height: 22px;
 	}
 	
 </style>
