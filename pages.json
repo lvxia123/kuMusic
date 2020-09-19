@@ -1,8 +1,44 @@
 {
 	"pages": [
 		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "酷狗音乐"
+			}
+		}, 
+		{
 		    "path" : "pages/singer/singer",
 		    "style" : {}
+			// "style": {
+			// 	"navigationBarBackgroundColor": "#1da0ef",
+			// 	"enablePullDownRefresh": true, //开启下拉刷新
+			// 	"titleImage": "./static/logo.png",
+			// 	"backgroundTextStyle": "dark",
+			// 	"app-plus": {
+			// 		"scrollIndicator": "none", //app端隐藏滚动条
+			// 		"bounce": "none",
+			// 		"titleNView": {
+			// 			"buttons": [{
+			// 				"type": "back",
+			// 				"fontWeight": "normal",
+			// 				"fontSrc":"./static/back.png",
+			// 				"float": "left",
+			// 				"fontSize": "40rpx"
+			// 				//按钮类型(菜单按钮)
+			// 			}]
+			// 		},
+			// 		"bounce": "none",
+			// 		"titleNView": {
+			// 			"buttons": [{
+			// 				"type": "back",
+			// 				"fontWeight": "normal",
+			// 				"float": "left",
+			// 				"fontSize": "40rpx"
+			// 				//按钮类型(菜单按钮)
+			// 			}]
+			// 		}
+			// 	}
+			// }
 		},
 		{
 		    "path" : "pages/bofang/bofang",
@@ -25,8 +61,8 @@
 				"backgroundTextStyle": "dark",
 				"app-plus": {
 					"scrollIndicator": "none", //app端隐藏滚动条
-<<<<<<< HEAD
-					"bounce": "none"
+// <<<<<<< HEAD
+					"bounce": "none",
 					// "titleNView": {
 					// 	"buttons": [{
 					// 		"type": "back",
@@ -38,11 +74,11 @@
 					// 		//按钮类型(菜单按钮)
 					// 	}]
 					// }
-=======
-					"bounce": "none",
+// =======
+					//"bounce": "none",
 					"titleNView": {
 						"buttons": [{
-							"type": "back",
+							//"type": "back",
 							// "text":"< 返回",
 							"fontWeight": "normal",
 							// "fontSrc":"./static/back.png",
@@ -51,7 +87,7 @@
 							//按钮类型(菜单按钮)
 						}]
 					}
->>>>>>> master
+// >>>>>>> master
 				}
 			}
 		},
@@ -64,8 +100,8 @@
 				"backgroundTextStyle": "dark",
 				"app-plus": {
 					"scrollIndicator": "none", //app端隐藏滚动条
-<<<<<<< HEAD
-					"bounce": "none"
+// <<<<<<< HEAD
+					"bounce": "none",
 					// "titleNView": {
 					// 	"buttons": [{
 					// 		"type": "back",
@@ -77,29 +113,24 @@
 					// 		//按钮类型(菜单按钮)
 					// 	}]
 					// }
-=======
-					"bounce": "none",
+// =======
+					//"bounce": "none",
 					"titleNView": {
-						"buttons": [{
-							"type": "back",
-							// "text":"< 返回",
-							"fontWeight": "normal",
-							// "fontSrc":"./static/back.png",
-							"float": "left",
-							"fontSize": "40rpx"
-							//按钮类型(菜单按钮)
-						}]
+						// "buttons": [{
+						// 	"type": "back",
+						// 	// "text":"< 返回",
+						// 	"fontWeight": "normal",
+						// 	// "fontSrc":"./static/back.png",
+						// 	"float": "left",
+						// 	"fontSize": "40rpx"
+						// 	//按钮类型(菜单按钮)
+						// }]
 					}
->>>>>>> master
+// >>>>>>> master
 				}
 			}
 		},
 		{
-			"path": "pages/index/index",
-			"style": {
-				"navigationBarTitleText": "酷我"
-			}
-		}, {
 			"path": "pages/search/search"
 		}, {
 			"path": "pages/me/me"
@@ -109,28 +140,28 @@
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
-		"navigationBarTitleText": "酷我",
+		"navigationBarTitleText": "酷狗音乐",
 		"navigationBarBackgroundColor": "#1da0ef",
 		"backgroundColor": "#FFFFFF",
-		"titleImage": "static/image/logo.png",
+		"titleImage": "./static/logo.png",
 		"app-plus": {
 			"scrollIndicator": "none",
 			"bounce": "none",
 			"titleNView": {
-<<<<<<< HEAD
-				"autoBackButton": true
+// <<<<<<< HEAD
+				"autoBackButton": true,
 				// "buttons": [{
 				// 	"type": "back",
 				// 	"text": "返回",
 				// 	"float": "left"
 				// }]
-=======
+// =======
 				"buttons": [{
-					"type": "back",
-					"text": "返回",
-					"float": "left"
+					// "type": "back",
+					// "text": "返回",
+					// "float": "left"
 				}]
->>>>>>> master
+// >>>>>>> master
 			}
 		}
 	},

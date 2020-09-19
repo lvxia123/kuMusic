@@ -1,33 +1,32 @@
 <template>
 	<view style="overflow: hidden;">
-		<!-- 上面的大binner -->
-		<view class="bannerout">
-			<image class=" banner" :src="info.banner_9" mode=""></image>
-			<!--返回按钮 -->
-			<view >
-				<image class="lastimage" src="../../static/back.png" mode="" @click="back"></image>
-				<view class="bannerrankname">{{info.rankname}}</view>
+			<!-- 上面的大binner -->
+			<view class="bannerout">
+				<image class=" banner" :src="info.banner_9" mode=""></image>
+				<!--返回按钮 -->
+				<view >
+					<image class="lastimage" src="../../static/back.png" mode="" @click="back"></image>
+					<view class="bannerrankname">{{info.rankname}}</view>
+				</view>
+				<view class="bannerbutton"></view>
 			</view>
-			<view class="bannerbutton"></view>
-		</view>
-		<!-- 下面的音乐列表 -->
-		<view class="songs" v-for="(i,k) in songs" :key="k">
-			<view class="songsborder">
-				<view class="songsid" :class="sstt[k]">{{k+1}}</view>
-				<view class="songsfilename">{{i.filename}}</view>
-				<!-- 下载按钮 -->
-				<view class="download">
-					<image src="../../static/download.png" mode=""></image>
+			<!-- 下面的音乐列表 -->
+			<view class="songs" v-for="(i,k) in songs" :key="k">
+				<view class="songsborder">
+					<view class="songsid" :class="sstt[k]">{{k+1}}</view>
+					<view class="songsfilename">{{i.filename}}</view>
+					<!-- 下载按钮 -->
+					<view class="download">
+						<image src="../../static/download.png" mode=""></image>
+					</view>
 				</view>
 			</view>
+	
 		</view>
-
-	</view>
 </template>
 
 <script>
 	export default {
-
 		data() {
 			return {
 				// 声明变量保存推荐数组
@@ -55,7 +54,6 @@
 					res.data.info.banner_9 = this.sublist(res.data.info.banner_9);
 					res.data.info.bannerurl = this.sublist(res.data.info.bannerurl);
 					res.data.info.imgurl = this.sublist(res.data.info.imgurl);
-
 					// console.log(res.data.info);
 					this.info = res.data.info;
 					this.songs = res.data.songs.list;
@@ -96,7 +94,6 @@
 		width: 100%;
 		height:400rpx;
 		background-image: linear-gradient(top, rgba(0, 0, 0, 1), rgba(0, 0, 0,0));
-
 	}
 	.lastimage {
 		position: absolute;
@@ -105,7 +102,6 @@
 		top: 40rpx;
 		left: 20rpx;
 	}
-
 	.bannerrankname {
 		position: absolute;
 		color: #FFFFFF;
@@ -113,7 +109,6 @@
 		left: 130rpx;
 		font-size: 1rem;
 	}
-
 	.songsborder {
 		width: 95%;
 		display: flex;
@@ -125,7 +120,6 @@
 		margin: 10rpx 0;
 		margin: 0 auto;
 	}
-
 	.songsid {
 		flex: 1;
 		text-align: center;
@@ -133,37 +127,30 @@
 		font-size: 0.9rem;
 		align-self: center;
 	}
-
 	.songsfilename {
 		flex: 11;
 		font-size: 0.8rem;
 		padding: 0rpx 30rpx;
 		align-self: center;
 	}
-
 	.ss1,
 	.ss2,
 	.ss3 {
 		border-radius: 50%;
 		color: #ffff;
 	}
-
 	.ss1 {
 		background: #e80000;
 	}
-
 	.ss2 {
 		background: #ff7200;
 	}
-
 	.ss3 {
 		background: #f8b300;
 	}
-
 	.download {
 		flex: 1;
 	}
-
 	.download>image {
 		width: 55rpx;
 		height: 55rpx;
