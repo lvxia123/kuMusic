@@ -16,8 +16,8 @@
 		<view style="background-color:whitesmoke;height:40px;" class="view1"></view>
 		<view class="view1 view3">
 			<view class="def">
-				<input class="inp3" placeholder="海底椰" type="text">
-				<image style="width:30px; height:30px;" src="../../assets/search.png" mode=""></image>
+				<input class="inp3" placeholder="海底椰" type="text" v-model="a">
+				<image @click="sub" style="width:30px; height:30px;" src="../../assets/search.png" mode=""></image>
 			</view>
 		</view>
 		<view style="background-color:whitesmoke;height:25px;" class="view1"></view>
@@ -63,8 +63,20 @@
 			</view>
 		
 				<view>
-					<view v-for="(item,index) in list1" :key="index" class="items">
-						<text>{{item}}</text>
+					<view v-for="(item,index) in list" :key="index" class="it" style="border-bottom: 1px solid gray;">
+						<view style="display:flex; justify-content: space-between; width:270px;">
+							 <view style="font-size: 14px; padding:10px 10px;">
+							 	{{item.songname}}
+							 </view>
+							 <view style="display:flex; justify-content:space-between; width:100px;font-size:14px;">
+								 <view style="padding:10px 10px;">
+									 {{item.singername}}
+								 </view>
+							 </view>
+						</view>
+						<view style="padding:10px 10px; font-size: 14px;">
+							{{item.duration}}
+						</view>
 					</view>
 				</view>
 			
@@ -82,7 +94,8 @@
 			return{
 				clk:1,
 				list:[],
-				list1:[]
+				list1:[],
+				a:''
 			}
 		},
 		onLoad() {
@@ -115,7 +128,7 @@
 				return minute+":"+second
 			}
 		},
-		methods:{
+		methods:{ 
 			song(){
 				this.clk=1
 			},
@@ -124,6 +137,28 @@
 			},
 			MV(){
 				this.clk=3
+			},
+			sub(){
+				let b=[]
+				let url='http://mobilecdn.kugou.com/api/v3/search/song?format=json&keyword='+this.a
+				let url1='http://m.kugou.com/rank/info/?rankid=8888&page=1&json=true'
+				uni.request({
+					url:url,
+					success:(res)=>{
+						//console.log(res.data.data.info)
+						this.list=res.data.data.info 
+					}
+				})
+				uni.request({
+					url:url1,
+					success:res=> {
+						// this.list1.push(res.data)
+						b.push(res.data)
+						this.list1=b
+						
+						console.log(this.list1.info)
+					}
+				})
 			}
 		}
 	}
@@ -131,6 +166,10 @@
 </script>
 
 <style>
+	.it{
+		display:flex;
+		justify-content:space-between;
+	}
 	.items{
 		background-color: red;
 		width: 750rpx;
