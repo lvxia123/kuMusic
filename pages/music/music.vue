@@ -55,18 +55,22 @@
 				audioEle: '',
 				currentTime: 0,
 				songName: '',
-				newVal: ''
+				newVal: '',
+				current:{},
 			}
 		},
-		created() {
+		// created() {
+		onLoad: function (options) {
 			getsong: {
 				uni.request({
-					url: 'http://tingapi.ting.baidu.com/v1/restserver/ting?format=json&calback=&from=webapp_music&method=baidu.ting.song.play&songid=73896409',
-				}).then(res => {
+						url: 'http://tingapi.ting.baidu.com/v1/restserver/ting?format=json&calback=&from=webapp_music&method=baidu.ting.song.play&songid=73896409',
+						// url: 'http://tingapi.ting.baidu.com/v1/restserver/ting?format=json&calback=&from=webapp_music&method=baidu.ting.song.play&songid='+options.songid
+					}).then(res => {
 					console.log(res)
 					this.song = res[1].data.bitrate.file_link;
 					this.songName = res[1].data.songinfo.album_title;
 					this.singer = res[1].data.songinfo.author;
+					
 					if (this.store.state.audioEle === '') {
 						//就实例化音乐
 						this.store.commit('setAudioEle', uni.createInnerAudioContext());

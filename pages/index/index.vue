@@ -42,8 +42,11 @@
 		<view class="df">
 			<view class="cell" v-for="(item,i) in list" @click="send(item.filename)">
 				<view>{{item.filename}}</view>
-				<image style="width:20px; height: 20px;" src="../../assets/下载.png" mode=""></image>
-
+				<!-- <navigator :url="'/pages/music/music?id='+item.songid">
+				<view>{{item.album_title}}</view>
+				</navigator> -->
+				<image style="width:20px; height: 20px;" src="../../assets/xiazai.png" mode=""></image>
+				
 			</view>
 		</view>
 	</view>
@@ -66,7 +69,6 @@
 		},
 		methods: {
 			send(item) {
-
 				let url = '../index/index?singername' + item
 				uni.navigateTo({
 					url: "/pages/music/music"
@@ -98,6 +100,8 @@
 		},
 		onLoad() {
 			let url1 = "http://mobilecdn.kugou.com/api/v3/search/song?format=json&keyword=新歌"
+			//千千音乐接口
+			// let url1 = "http://tingapi.ting.baidu.com/v1/restserver/ting?format=json&calback=&from=webapp_music&method=baidu.ting.billboard.billList&type=1"
 			uni.request({
 				url: url1,
 				success: (res) => {
@@ -105,6 +109,8 @@
 					console.log(res.data.data.info)
 					this.list = res.data.data.info
 					console.log(this.list)
+					// this.list = res.data.song_list;
+					// console.log(this.list)
 
 				}
 			})

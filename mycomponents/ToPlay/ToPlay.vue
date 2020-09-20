@@ -7,7 +7,7 @@
 			</view>
 			<view class="song" @click="getsong">
 				<!-- {{song}} -->
-				<text>{{title}}</text>/
+				<text>{{title}}</text> 
 				<text>{{songer}}</text>
 			</view>
 			<view @click="collect">
@@ -35,6 +35,7 @@
 			getsong: {
 				uni.request({ 
 					url: 'http://tingapi.ting.baidu.com/v1/restserver/ting?format=json&calback=&from=webapp_music&method=baidu.ting.song.play&songid=609012146'
+					
 				}).then(res => {
 					console.log(res)
 					this.song = res[1].data.bitrate.file_link;
