@@ -6,7 +6,8 @@
 		</view>
 		
 		<view class="singer" v-for="(item,index) in songslist" :key="index">
-			<navigator :url="'/pages/bofang/bofang?hash='+item.hash">
+			<!-- <navigator :url="'/pages/bofang/bofang?hash='+item.hash"> -->
+			<navigator url="/pages/music/music">
 				<view class="gequ">
 					{{(item.filename).slice(6)}}
 				</view>

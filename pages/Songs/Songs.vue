@@ -11,7 +11,7 @@
 				<view class="bannerbutton"></view>
 			</view>
 			<!-- 下面的音乐列表 -->
-			<view class="songs" v-for="(i,k) in songs" :key="k">
+			<view @click="muics" class="songs" v-for="(i,k) in songs" :key="k">
 				<view class="songsborder">
 					<view class="songsid" :class="sstt[k]">{{k+1}}</view>
 					<view class="songsfilename">{{i.filename}}</view>
@@ -70,6 +70,11 @@
 			back() {
 				uni.navigateTo({
 					url: "../Ranking/Ranking"
+				})
+			},
+			muics(){
+				uni.navigateTo({
+					url: "../music/music"
 				})
 			}
 		},
